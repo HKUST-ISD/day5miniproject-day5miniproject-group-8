@@ -16,13 +16,13 @@ DHT dht11(DHT_PIN, DHT_TYPE);
 // NewPing setup of pins and maximum distance.
 NewPing sonar(TRIG_PIN, ECHO_PIN, MAX_DISTANCE);
 
-//define pins (built-in on development board)
+//define pins (only available pins on development board: 1/2/4/5/6/7/15/16)
 #define LED 1
 #define DHT_PIN   4
-#define TRIG_PIN 9
-#define ECHO_PIN  10
-#define BUZZER_PIN 36
-#define Servo_PIN 3
+#define TRIG_PIN 5
+#define ECHO_PIN  6
+#define BUZZER_PIN 35
+#define Servo_PIN 7
 
 // create servo object
 Servo servo;

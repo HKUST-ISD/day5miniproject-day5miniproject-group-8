@@ -4,11 +4,11 @@
 #include "NewPing.h"
 
 // define ultrasonic pins
-#define TRIG_PIN   9
-#define ECHO_PIN    10
+#define TRIG_PIN   5
+#define ECHO_PIN   6
 
-// define buzzer pin (built-in on development board)
-#define BUZZER_PIN  36
+// define buzzer pin (available pin on development board)
+#define BUZZER_PIN 35
 
 //Define Built-in LED pin (LED1 on development board)
 #define LED 1
