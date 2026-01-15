@@ -4,14 +4,14 @@
 #include "NewPing.h"
 
 // define ultrasonic pins
-#define TRIG_PIN   ?       
-#define ECHO_PIN    ?     
+#define TRIG_PIN   9
+#define ECHO_PIN    10
 
-// define buzzer pin ？
-#define BUZZER_PIN  ？   
+// define buzzer pin
+#define BUZZER_PIN  8
 
 //Define Built-in LED pin
-#define LED_PIN ？      
+#define LED_PIN 13
 
 // Maximum distance we want to ping for (in centimeters).
 #define MAX_DISTANCE 400
@@ -70,31 +70,46 @@ int noteDurations_low[] = {
 void setup() {
 
   // initialize serial monitor
-     ???
- // set pins mode
-    ???
- 
+  Serial.begin(9600);
+  
+  // set pins mode
+  pinMode(BUZZER_PIN, OUTPUT);
+  pinMode(LED_PIN, OUTPUT);
+  pinMode(TRIG_PIN, OUTPUT);
+  pinMode(ECHO_PIN, INPUT);
   
 }
 
-void loop() { 
+void loop() {
   // Get the distance from the Ultrasonic Sensor
-    float distance = sonar.ping_cm();
-  
-      if (distance > 10 ) {
-        // turn on built in LED
-        ???
-      } else if (distance <= 10 && distance >= 5) {
-        // turn off built in LED
-        ???
-        // play high tone Jingle-Bells Iterate over the notes of the melody_high:
-        ???
-      } else if (distance <5 ) {
-        // turn off built in LED
-        ???
-        // play low tone Jingle-Bells Iterate over the notes of the melody_low
-        ???
-   
-} 
-  delay(?);
+  float distance = sonar.ping_cm();
+
+  if (distance > 10 ) {
+    // turn on built in LED
+    digitalWrite(LED_PIN, HIGH);
+    noTone(BUZZER_PIN);
+  } else if (distance <= 10 && distance >= 5) {
+    // turn off built in LED
+    digitalWrite(LED_PIN, LOW);
+    // play high tone Jingle-Bells Iterate over the notes of the melody_high:
+    for (int thisNote = 0; thisNote < 24; thisNote++) {
+      int noteDuration = 1000 / noteDurations_high[thisNote];
+      tone(BUZZER_PIN, melody_high[thisNote], noteDuration);
+      int pauseBetweenNotes = noteDuration * 1.30;
+      delay(pauseBetweenNotes);
+      noTone(BUZZER_PIN);
+    }
+  } else if (distance < 5 ) {
+    // turn off built in LED
+    digitalWrite(LED_PIN, LOW);
+    // play low tone Jingle-Bells Iterate over the notes of the melody_low
+    for (int thisNote = 0; thisNote < 24; thisNote++) {
+      int noteDuration = 1000 / noteDurations_low[thisNote];
+      tone(BUZZER_PIN, melody_low[thisNote], noteDuration);
+      int pauseBetweenNotes = noteDuration * 1.30;
+      delay(pauseBetweenNotes);
+      noTone(BUZZER_PIN);
+    }
+  }
+  delay(100);
 }
