@@ -7,11 +7,11 @@
 #define TRIG_PIN   9
 #define ECHO_PIN    10
 
-// define buzzer pin
-#define BUZZER_PIN  8
+// define buzzer pin (built-in on development board)
+#define BUZZER_PIN  36
 
-//Define Built-in LED pin
-#define LED_PIN 13
+//Define Built-in LED pin (LED1 on development board)
+#define LED 1
 
 // Maximum distance we want to ping for (in centimeters).
 #define MAX_DISTANCE 400
