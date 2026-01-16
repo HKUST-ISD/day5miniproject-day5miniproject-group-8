@@ -74,7 +74,7 @@ void setup() {
   
   // set pins mode
   pinMode(BUZZER_PIN, OUTPUT);
-  pinMode(LED_PIN, OUTPUT);
+  pinMode(LED, OUTPUT);
   pinMode(TRIG_PIN, OUTPUT);
   pinMode(ECHO_PIN, INPUT);
   
@@ -86,11 +86,11 @@ void loop() {
 
   if (distance > 10 ) {
     // turn on built in LED
-    digitalWrite(LED_PIN, HIGH);
+    digitalWrite(LED, HIGH);
     noTone(BUZZER_PIN);
   } else if (distance <= 10 && distance >= 5) {
     // turn off built in LED
-    digitalWrite(LED_PIN, LOW);
+    digitalWrite(LED, LOW);
     // play high tone Jingle-Bells Iterate over the notes of the melody_high:
     for (int thisNote = 0; thisNote < 24; thisNote++) {
       int noteDuration = 1000 / noteDurations_high[thisNote];
@@ -101,7 +101,7 @@ void loop() {
     }
   } else if (distance < 5 ) {
     // turn off built in LED
-    digitalWrite(LED_PIN, LOW);
+    digitalWrite(LED, LOW);
     // play low tone Jingle-Bells Iterate over the notes of the melody_low
     for (int thisNote = 0; thisNote < 24; thisNote++) {
       int noteDuration = 1000 / noteDurations_low[thisNote];
