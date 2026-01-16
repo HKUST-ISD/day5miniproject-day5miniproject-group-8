@@ -37,14 +37,14 @@ void setup() {
   //attach servo pin
   servo.attach(Servo_PIN);
   // config the pin mode of each pin
-  pinMode(LED_PIN, OUTPUT);
+  pinMode(LED, OUTPUT);
   pinMode(BUZZER_PIN, OUTPUT);
   pinMode(TRIG_PIN, OUTPUT);
   pinMode(ECHO_PIN, INPUT);
   // initialize servo to stopped position
   servo.write(0);
   // ensure LED and buzzer are off initially
-  digitalWrite(LED_PIN, LOW);
+  digitalWrite(LED, LOW);
   noTone(BUZZER_PIN);
 }
 
@@ -68,7 +68,7 @@ void loop() {
       Serial.println("Safe: Temperature <= 30°C");
       // buzzer no sound
       noTone(BUZZER_PIN);
-      digitalWrite(LED_PIN, LOW);
+      digitalWrite(LED, LOW);
   } else if (humi >= 30) {
       // servo motor stop
       servo.write(0);
@@ -76,7 +76,7 @@ void loop() {
       Serial.println("Caution: Humidity >= 30%");
       // buzzer continuously alarm
       tone(BUZZER_PIN, 1000);
-      digitalWrite(LED_PIN, HIGH);
+      digitalWrite(LED, HIGH);
       // report heat source distance from Ultrasonic sensor
       delay(50);
       unsigned int distance = sonar.ping_cm();
@@ -94,7 +94,7 @@ void loop() {
       delay(100);
       noTone(BUZZER_PIN);
       delay(100);
-      digitalWrite(LED_PIN, HIGH);
+      digitalWrite(LED, HIGH);
   }
   
 
