@@ -1,4 +1,3 @@
-/* replace ? and add code in ???*/
 #include <Arduino.h>
 #include <DHT.h>
 #include "NewPing.h"
@@ -10,19 +9,18 @@
 #define DHT_TYPE DHT11
 DHT dht11(DHT_PIN, DHT_TYPE);
 
+//define pins (only available pins on development board: 1/2/4/5/6/7/15/16)
+#define LED 1
+#define TRIG_PIN 5
+#define ECHO_PIN  6
+#define BUZZER_PIN 35
+#define Servo_PIN 7
+
 // Maximum distance we want to ping for (in centimeters).
 #define MAX_DISTANCE 400
 
 // NewPing setup of pins and maximum distance.
 NewPing sonar(TRIG_PIN, ECHO_PIN, MAX_DISTANCE);
-
-//define pins (only available pins on development board: 1/2/4/5/6/7/15/16)
-#define LED 1
-#define DHT_PIN   4
-#define TRIG_PIN 5
-#define ECHO_PIN  6
-#define BUZZER_PIN 35
-#define Servo_PIN 7
 
 // create servo object
 Servo servo;
@@ -63,7 +61,7 @@ void loop() {
   } else if (tempC <= 30) {
 
       // servo motor stop
-      servo.write(0);
+      servo.write(90);
       // Serial Monitor show Safe
       Serial.println("Safe: Temperature <= 30°C");
       // buzzer no sound
@@ -86,7 +84,7 @@ void loop() {
     }
     else if (humi < 30)  {
       // servo motor run
-      servo.write(90);
+      servo.write(0);
       // Serial Monitor show Dangerous
       Serial.println("Dangerous: Humidity < 30%");
       // buzzer beep
